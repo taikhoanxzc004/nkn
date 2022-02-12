@@ -1,0 +1,9 @@
+{
+    "auth": {
+        "username": "kalinh",
+        "pwd": "Ytb1452@!@#$%"
+    },
+    "DB": {
+        "saveInterval": 60000
+    }
+}
