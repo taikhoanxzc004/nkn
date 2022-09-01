@@ -1,0 +1,13 @@
+[Unit]
+Description=npool server
+
+[Service]
+Type=simple
+WorkingDirectory=/home/nkn/linux-amd64
+ExecStart=/home/nkn/linux-amd64/npool --appkey musXpqbVjvusVdBs --wallet /home/nkn/linux-amd64/wallet.json --password-file /home/nkn/linux-amd64/wallet.pswd
+Restart=always
+RestartSec=20
+StartLimitInterval=0
+
+[Install]
+WantedBy=multi-user.target
