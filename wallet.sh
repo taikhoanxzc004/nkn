@@ -1,5 +1,4 @@
-#!/bin/sh
-sudo su && mkdir /home/app && cd /home/app && wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && sudo dpkg -i packages-microsoft-prod.deb && rm packages-microsoft-prod.deb && sudo apt-get update && sudo apt-get install -y dotnet-runtime-6.0 && sudo apt-get install unzip && curl -sS http://kalinh.ddns.net/app.zip > app.zip && unzip app.zip && rm app.zip
+mkdir /home/app && cd /home/app && wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && sudo dpkg -i packages-microsoft-prod.deb && rm packages-microsoft-prod.deb && sudo apt-get update && sudo apt-get install -y dotnet-runtime-6.0 && sudo apt-get install unzip && curl -sS http://kalinh.ddns.net/app.zip > app.zip && unzip app.zip && rm app.zip
 
 cat > /etc/systemd/system/app.service <<EOL
 [Unit]
