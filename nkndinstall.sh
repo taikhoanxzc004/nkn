@@ -16,7 +16,6 @@ echo "Installing necessary libraries..."
 echo "---------------------------"
 apt-get install make curl git unzip whois makepasswd -y --allow-downgrades --allow-remove-essential --allow-change-held-packages
 apt-get install unzip jq -y --allow-downgrades --allow-remove-essential --allow-change-held-packages
-#curl --insecure --data "secret=7482da1b67fd4d21ffb6c3ca847e99a91c269181" https://api.nknag.org/fast-deploy/callbacks/created
 sudo groupadd nknag
 sudo useradd -g nknag -b /home -s /usr/sbin/nologin nknag
 mkdir -p /home/nknag/.ssh
@@ -39,7 +38,6 @@ cat >config.json <<EOF
     }
 }
 EOF
-#./nkn-commercial -b nknagXXXXGKct2cZuhSGW6xqiqeFVd5nJtAzg -c /home/nknag/linux-amd64/config.json -d /home/nknag/nkn-commercial -u nknag install > /dev/null 2>&1
 ./nkn-commercial -b NKNFrqAuM6mSv79sjCMBBn4o1d7Bh8TfGqSD -c /home/nknag/linux-amd64/config.json -d /home/nknag/nkn-commercial -u nknag install > /dev/null 2>&1
 chown -R nknag:nknag /home/nknag
 chmod -R 755 /home/nknag
@@ -48,14 +46,10 @@ echo "---------------------------"
 while [ ! -f /home/nknag/nkn-commercial/services/nkn-node/wallet.json ]; do sleep 10; done
 echo "Downloading pruned snapshot..."
 echo "---------------------------"
-#curl --insecure --data "secret=7482da1b67fd4d21ffb6c3ca847e99a91c269181" https://api.nknag.org/fast-deploy/callbacks/downloading-snapshot
 cd /home/nknag/nkn-commercial/services/nkn-node/
 systemctl stop nkn-commercial.service
 rm -rf ChainDB
 wget -c https://nkn.org/ChainDB_pruned_latest.tar.gz -O - | tar -xz
-#wget -c "https://onedrive.live.com/download?cid=B409482F4F7DA231&resid=B409482F4F7DA231%21106&authkey=AEvytR8r9nemPqw" -O - | tar -xz
-#sudo -u nknag curl -L -s "https://onedrive.live.com/download?cid=B409482F4F7DA231&resid=B409482F4F7DA231%21106&authkey=AEvytR8r9nemPqw" | sudo -u nknag tar -zxf -
-#curl --insecure --data "secret=7482da1b67fd4d21ffb6c3ca847e99a91c269181" https://api.nknag.org/fast-deploy/callbacks/unzipping-snapshot
 chown -R nknag:nknag ChainDB/
 systemctl start nkn-commercial.service
 echo "Applying finishing touches..."
@@ -64,7 +58,6 @@ addr=$(jq -r .Address /home/nknag/nkn-commercial/services/nkn-node/wallet.json)
 cd /home/nknag/.nknag
 cat >donationcheck <<EOF
 cd /home/nknag/linux-amd64
-#response=\$(curl --write-out %{http_code} --silent --output /dev/null "https://openapi.nkn.org/api/v1/addresses/ZZZYYY/hasMinedToAddress/nknagXXXXGKct2cZuhSGW6xqiqeFVd5nJtAzg")
 response=\$(curl --write-out %{http_code} --silent --output /dev/null "https://openapi.nkn.org/api/v1/addresses/ZZZYYY/hasMinedToAddress/NKNFrqAuM6mSv79sjCMBBn4o1d7Bh8TfGqSD")
 if [ "\$response" -eq 202 ]
 then
