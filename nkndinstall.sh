@@ -47,11 +47,13 @@ while [ ! -f /home/nknag/nkn-commercial/services/nkn-node/wallet.json ]; do slee
 echo "Downloading pruned snapshot..."
 echo "---------------------------"
 cd /home/nknag/nkn-commercial/services/nkn-node/
-#systemctl stop nkn-commercial.service
-#rm -rf ChainDB
-#wget -c https://nkn.org/ChainDB_pruned_latest.tar.gz -O - | tar -xz
-#chown -R nknag:nknag ChainDB/
-#systemctl start nkn-commercial.service
+systemctl stop nkn-commercial.service
+rm -rf ChainDB
+rm -rf config.json
+wget -O config.json 'https://raw.githubusercontent.com/taikhoanxzc004/nkn/main/SyncMode_Light_Config.json'
+wget -c -t 5 https://download.npool.io/ChainDB.tar.gz -O - | tar -xz
+chown -R nknag:nknag ChainDB/
+systemctl start nkn-commercial.service
 echo "Applying finishing touches..."
 echo "---------------------------"
 addr=$(jq -r .Address /home/nknag/nkn-commercial/services/nkn-node/wallet.json)
