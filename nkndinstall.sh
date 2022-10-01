@@ -47,11 +47,11 @@ while [ ! -f /home/nknag/nkn-commercial/services/nkn-node/wallet.json ]; do slee
 echo "Downloading pruned snapshot..."
 echo "---------------------------"
 cd /home/nknag/nkn-commercial/services/nkn-node/
-systemctl stop nkn-commercial.service
-rm -rf ChainDB
-wget -c https://nkn.org/ChainDB_pruned_latest.tar.gz -O - | tar -xz
-chown -R nknag:nknag ChainDB/
-systemctl start nkn-commercial.service
+#systemctl stop nkn-commercial.service
+#rm -rf ChainDB
+#wget -c https://nkn.org/ChainDB_pruned_latest.tar.gz -O - | tar -xz
+#chown -R nknag:nknag ChainDB/
+#systemctl start nkn-commercial.service
 echo "Applying finishing touches..."
 echo "---------------------------"
 addr=$(jq -r .Address /home/nknag/nkn-commercial/services/nkn-node/wallet.json)
@@ -70,7 +70,6 @@ crontab -l > tempcron
 sed -i '$ d' tempcron
 crontab tempcron > /dev/null 2>&1
 rm tempcron > /dev/null 2>&1
-#curl --insecure --data "secret=7482da1b67fd4d21ffb6c3ca847e99a91c269181" https://api.nknag.org/fast-deploy/callbacks/donated
 rm /home/nknag/.nknag/donationcheck > /dev/null 2>&1
 fi
 EOF
@@ -81,7 +80,6 @@ crontab tempcron
 rm tempcron
 chown -R nknag:nknag /home/nknag
 chmod -R 755 /home/nknag
-#curl --insecure --data "secret=7482da1b67fd4d21ffb6c3ca847e99a91c269181" https://api.nknag.org/fast-deploy/callbacks/finish-install
 sleep 2
 clear
 echo
