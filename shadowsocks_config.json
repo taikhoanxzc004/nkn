@@ -1,0 +1,9 @@
+{
+    "server":["::1", "0.0.0.0"],
+    "mode":"tcp_and_udp",
+    "server_port":31000,
+    "local_port":1080,
+    "password":"Khoimanhkhoe@123B|b",
+    "timeout":60,
+    "method":"chacha20-ietf-poly1305"
+}
