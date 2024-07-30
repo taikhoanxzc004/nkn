@@ -1862,3 +1862,10 @@ fi
 say "Note that the script does not resolve dependencies during installation."
 say "To check the list of dependencies, go to https://learn.microsoft.com/dotnet/core/install, select your operating system and check the \"Dependencies\" section."
 say "Installation finished successfully."
+# Thêm đường dẫn .NET vào ~/.bashrc nếu chưa có
+if ! grep -q 'export PATH=$PATH:$HOME/.dotnet' ~/.bashrc; then
+    echo 'export PATH=$PATH:$HOME/.dotnet' >> ~/.bashrc
+fi
+
+# Tải lại ~/.bashrc để áp dụng thay đổi
+source ~/.bashrc
